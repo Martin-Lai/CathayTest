@@ -9,7 +9,7 @@ class ListPresenter(private val view: ListContract.IListActivity) : ListContract
             login = "Jay"
             site_admin = false
             avatar_url =
-                "https://infura-ipfs.io/ipfs/QmTCoNbCSw59iXbzfLGMNPCWvSokeTQhSfJkc7sCqMypRU"
+                "https://avatars.githubusercontent.com/u/2?v=4"
         }
         mockData.add(user1)
         val user2 = GithubBean()
