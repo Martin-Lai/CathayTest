@@ -22,7 +22,7 @@ class ListActivity : AppCompatActivity(), ListContract.IListActivity {
         mAdapter = ListAdapter(ArrayList<GithubBean>())
         binding.recyclerview.adapter = mAdapter
 
-        presenter = ListPresenter(this)
+        presenter = ListPresenter(this, GithubRepository())
         Log.d(TAG, "onCreate: ")
     }
 

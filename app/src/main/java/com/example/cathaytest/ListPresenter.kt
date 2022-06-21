@@ -1,26 +1,15 @@
 package com.example.cathaytest
 
-class ListPresenter(private val view: ListContract.IListActivity) : ListContract.IListPresenter {
+class ListPresenter(private val view: ListContract.IListActivity, private val githubRepository: GithubRepository) : ListContract.IListPresenter {
     override fun getGithubList() {
-        val mockData = ArrayList<GithubBean>();
-        val user1 = GithubBean()
-        user1.apply {
-            id = 1
-            login = "Jay"
-            site_admin = false
-            avatar_url =
-                "https://avatars.githubusercontent.com/u/2?v=4"
-        }
-        mockData.add(user1)
-        val user2 = GithubBean()
-        user2.apply {
-            id = 2
-            login = "May"
-            site_admin = true
-            avatar_url =
-                "https://infura-ipfs.io/ipfs/QmSg4AgCs6DSzKGYAHcqWzjoA5DzDsDDw1yYTWkBJHQJ6J"
-        }
-        mockData.add(user2)
-        view.notifyGithubListChange(mockData)
+        githubRepository.getGithubList(object: IGithubRepository.MyFinishListener {
+            override fun onSuccess(githubList: List<GithubBean>) {
+                view.notifyGithubListChange(githubList as ArrayList<GithubBean> /* = java.util.ArrayList<com.example.cathaytest.GithubBean> */)
+            }
+
+            override fun onFailure() {
+                TODO("Not yet implemented")
+            }
+        })
     }
 }
