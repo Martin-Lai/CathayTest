@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cathaytest.databinding.GithubItemBinding
+import com.squareup.picasso.Picasso
 import java.net.URI
 
 class ListAdapter(private var githubList: List<GithubBean>) :
@@ -34,16 +35,8 @@ class ListAdapter(private var githubList: List<GithubBean>) :
         private val TAG = "ListAdapter"
         fun bind(githubBean: GithubBean) {
             itemBinding.tvName.text = githubBean.login
-            Thread {
-                kotlin.run {
-                    val im = java.net.URL(githubBean.avatar_url).openStream()
-                    val image = BitmapFactory.decodeStream(im)
-                    Log.d(TAG, "bind: ")
-                    itemBinding.imgAvatar.post(Runnable {
-                        itemBinding.imgAvatar.setImageBitmap(image)
-                    })
-                }
-            }.start()
+            // use Picasso or Glide
+            Picasso.get().load(githubBean.avatar_url).placeholder(R.drawable.ic_baseline_person_24).into(itemBinding.imgAvatar)
         }
     }
 
