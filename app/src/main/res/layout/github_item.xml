@@ -37,6 +37,7 @@
         <TextView
             android:id="@+id/tv_tag"
             android:text="STAFF"
+            android:visibility="gone"
             android:layout_marginTop="1dp"
             android:background="@drawable/tag_drawable"
             android:textColor="@color/white"

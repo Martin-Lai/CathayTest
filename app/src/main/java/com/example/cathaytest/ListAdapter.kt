@@ -1,15 +1,11 @@
 package com.example.cathaytest
 
-import android.graphics.BitmapFactory
-import android.net.Uri
-import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
-import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cathaytest.databinding.GithubItemBinding
 import com.squareup.picasso.Picasso
-import java.net.URI
 
 class ListAdapter(private var githubList: List<GithubBean>) :
     RecyclerView.Adapter<ListAdapter.ListViewHolder>() {
@@ -35,6 +31,7 @@ class ListAdapter(private var githubList: List<GithubBean>) :
         private val TAG = "ListAdapter"
         fun bind(githubBean: GithubBean) {
             itemBinding.tvName.text = githubBean.login
+            itemBinding.tvTag.visibility = if (githubBean.site_admin) View.VISIBLE else View.GONE
             // use Picasso or Glide
             Picasso.get().load(githubBean.avatar_url).placeholder(R.drawable.ic_baseline_person_24).into(itemBinding.imgAvatar)
         }
