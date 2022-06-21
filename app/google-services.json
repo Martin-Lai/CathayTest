@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "819750857056",
+    "project_id": "cathaybk-b13da",
+    "storage_bucket": "cathaybk-b13da.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:819750857056:android:eb50b973b4674645431605",
+        "android_client_info": {
+          "package_name": "com.example.cathaytest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "819750857056-6ii63pel6onaif7r6cdvhh8d5o80c305.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBApCEkFNdksk5IPAdxFUzqW_ZawmTQ92A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "819750857056-6ii63pel6onaif7r6cdvhh8d5o80c305.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
