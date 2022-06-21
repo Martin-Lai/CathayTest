@@ -1,5 +1,6 @@
 package com.example.cathaytest
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -13,11 +14,9 @@ import com.google.firebase.ktx.Firebase
 import java.lang.Exception
 
 class MainActivity : AppCompatActivity(), MainContract.IMainActivity {
-    private val TAG = "MainActivity"
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_main)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -28,11 +27,13 @@ class MainActivity : AppCompatActivity(), MainContract.IMainActivity {
     }
 
     override fun loginSuccess() {
-        Toast.makeText(this, "Success", Toast.LENGTH_LONG)
+        Toast.makeText(this, "Login Success", Toast.LENGTH_LONG).show()
+        startActivity(Intent(this, ListActivity::class.java))
+        finish()
     }
 
     override fun loginFailure(exception: Exception) {
-        Toast.makeText(this, "Login Failure \n message: " + exception.toString(), Toast.LENGTH_LONG)
+        Toast.makeText(this, "Login Failure \n message: " + exception.toString(), Toast.LENGTH_LONG).show()
     }
 
 }
