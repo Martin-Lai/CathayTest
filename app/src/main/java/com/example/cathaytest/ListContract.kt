@@ -7,5 +7,6 @@ class ListContract {
 
     interface IListPresenter {
         fun getGithubList()
+        fun updateLastCompletelyVisibleItemPosition(position: Int)
     }
 }

@@ -1,7 +1,7 @@
 package com.example.cathaytest
 
 interface IGithubRepository {
-    fun getGithubList(callback: MyFinishListener)
+    fun getGithubList(sinceId: Int, callback: MyFinishListener)
     fun getGithubUser(id: Int, callback: MyFinishListener)
 
     interface MyFinishListener {
