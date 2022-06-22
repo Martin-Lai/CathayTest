@@ -13,6 +13,7 @@ class ListActivity : AppCompatActivity(), ListContract.IListActivity {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityListBinding.inflate(layoutInflater)
+        supportActionBar!!.show()
         supportActionBar!!.title = "Github Users"
         setContentView(binding.root)
         layoutManager = LinearLayoutManager(this)
