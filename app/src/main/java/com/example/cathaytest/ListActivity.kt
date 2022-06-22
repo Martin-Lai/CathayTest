@@ -17,7 +17,7 @@ class ListActivity : AppCompatActivity(), ListContract.IListActivity {
         supportActionBar!!.title = "Github Users"
         setContentView(binding.root)
         layoutManager = LinearLayoutManager(this)
-        mAdapter = ListAdapter(ArrayList<GithubBean>())
+        mAdapter = ListAdapter(this, ArrayList<GithubBean>())
         binding.recyclerview.layoutManager = layoutManager
         binding.recyclerview.adapter = mAdapter
         binding.recyclerview.addOnScrollListener(object : RecyclerView.OnScrollListener() {
@@ -27,7 +27,7 @@ class ListActivity : AppCompatActivity(), ListContract.IListActivity {
             }
         })
 
-        presenter = ListPresenter(this, GithubRepository())
+        presenter = ListPresenter(this, GithubRepository.getInstance())
     }
 
     override fun onResume() {

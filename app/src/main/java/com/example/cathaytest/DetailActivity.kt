@@ -2,19 +2,19 @@ package com.example.cathaytest
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import com.example.cathaytest.databinding.ActivityDetailBinding
 import com.squareup.picasso.Picasso
 
 class DetailActivity : AppCompatActivity(), DetailContract.IDetailActivity {
-
     private lateinit var binding: ActivityDetailBinding;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar!!.hide()
-        var binding = ActivityDetailBinding.inflate(layoutInflater)
+        binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        DetailPresenter(this, GithubRepository.getInstance()).fetchUser(intent.getStringExtra("login")!!)
     }
 
     override fun setUserInfo(user: GithubBeanDetail) {
@@ -25,5 +25,6 @@ class DetailActivity : AppCompatActivity(), DetailContract.IDetailActivity {
         binding.tvLocation.text = user.location
         binding.tvBlog.text = user.blog
         binding.tvTag.visibility = if (user.site_admin) View.VISIBLE else View.GONE
+        binding.btnCancel.setOnClickListener { finish() }
     }
 }

@@ -1,5 +1,8 @@
 package com.example.cathaytest
 
+import android.app.Activity
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.cathaytest.databinding.GithubItemBinding
 import com.squareup.picasso.Picasso
 
-class ListAdapter(private var githubList: List<GithubBean>) :
+class ListAdapter(private val context: Context, private var githubList: List<GithubBean>) :
     RecyclerView.Adapter<ListAdapter.ListViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
         val itemBinding = GithubItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -17,6 +20,11 @@ class ListAdapter(private var githubList: List<GithubBean>) :
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         val githubBean = githubList[position]
         holder.bind(githubBean)
+        holder.itemBinding.root.setOnClickListener {
+            val intent = Intent(context, DetailActivity::class.java)
+            intent.putExtra("login", githubBean.login)
+            context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int = githubList.size
@@ -27,8 +35,7 @@ class ListAdapter(private var githubList: List<GithubBean>) :
     }
 
 
-    class ListViewHolder(private val itemBinding: GithubItemBinding) : RecyclerView.ViewHolder(itemBinding.root) {
-        private val TAG = "ListAdapter"
+    class ListViewHolder(val itemBinding: GithubItemBinding) : RecyclerView.ViewHolder(itemBinding.root) {
         fun bind(githubBean: GithubBean) {
             itemBinding.tvName.text = githubBean.login
             itemBinding.tvTag.visibility = if (githubBean.site_admin) View.VISIBLE else View.GONE

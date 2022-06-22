@@ -7,8 +7,6 @@ import com.google.firebase.auth.OAuthCredential
 import com.google.firebase.auth.OAuthProvider
 
 class MainPresenter(val view: MainContract.IMainActivity) : MainContract.IMainPresenter {
-    private val TAG = "MainPresenter"
-
     override fun login() {
         FirebaseAuth.getInstance().startActivityForSignInWithProvider(
             view as Activity,
@@ -17,7 +15,5 @@ class MainPresenter(val view: MainContract.IMainActivity) : MainContract.IMainPr
             GlobalVariable.accessToken = (result.credential as OAuthCredential).accessToken!!
             view.loginSuccess()
         }.addOnFailureListener { exception -> view.loginFailure(exception) }
-
-
     }
 }
