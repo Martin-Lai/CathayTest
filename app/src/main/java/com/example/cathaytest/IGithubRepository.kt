@@ -1,11 +1,11 @@
 package com.example.cathaytest
 
 interface IGithubRepository {
-    fun getGithubList(sinceId: Int, callback: MyFinishListener)
-    fun getGithubUser(id: Int, callback: MyFinishListener)
+    fun getGithubList(sinceId: Int, callback: MyFinishListener<List<GithubBean>>)
+    fun getGithubUser(login: String, callback: MyFinishListener<GithubBeanDetail>)
 
-    interface MyFinishListener {
-        fun onSuccess(githubList: List<GithubBean>)
-        fun onFailure()
+    interface MyFinishListener<T> {
+        fun onSuccess(response: T)
+        fun onFailure(t: Throwable)
     }
 }
